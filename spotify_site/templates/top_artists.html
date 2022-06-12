@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Top Artists</h1>
+    <div class="data-container">
+        <ol class="top-data-list">
+            {% for artist in top_artists %}
+            <li class="top-data-item">
+                <img class="top-data-img" src={{ artist["images"][1]["url"] }}>
+                {{ artist["name"] }}
+                
+            </li>
+            {% endfor %}
+        </ol>
+    </div>
+    
+{% endblock content %}

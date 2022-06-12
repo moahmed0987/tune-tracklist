@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Top Tracks</h1>
+    <ol class="top-data-list">
+        {% for track in top_tracks %}
+        <li class="top-data-item">
+            <img class="top-data-img" src={{ track["album"]["images"][1]["url"] }}>
+            {{ track["name"] }}
+            
+        </li>
+        {% endfor %}
+    </ol>
+    
+{% endblock content %}
