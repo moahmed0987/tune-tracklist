@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+body {
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+}
+
 .nav-bar {
     list-style-type: none;
     margin: 0;
@@ -17,17 +23,32 @@
     border-radius: 15px;
 }
 
+.home-button-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.top-data-img{
+    max-width: 100%;
+}
 .top-data-list {
     display: grid;
     max-width: 1000px;
     grid-template-columns: 1fr 1fr 1fr;
     row-gap: 40px;
+    column-gap: 40px;
+    padding: 0;
 }
 
 .top-data-item {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 20px;
+    box-sizing: border-box;
 }
 
-.top-data-img {}
+.data-container {
+    display: flex;
+    justify-content: center;
+}

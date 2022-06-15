@@ -1,4 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
     <h1>Home</h1>
+    <div class="home-button-container">
+        <a class="button" href="{{ url_for('top_artists') }}">Top Artists</a>
+        <a class="button" href="{{ url_for('top_tracks') }}">Top Tracks</a>
+    </div>
 {% endblock content %}
