@@ -5,7 +5,7 @@
         <div class="top-data-list">
             {% for track in top_tracks %}
                 <div class="top-data-item">
-                    <img class="top-data-img" src="{{ track['album']['images'][1]['url'] }}" alt="Cover art for {{ track['name'] }}">
+                    <a href="{{ track['external_urls']['spotify'] }}"><img class="top-data-img" src="{{ track['album']['images'][1]['url'] }}" alt="Cover art for {{ track['name'] }}"></a>
                     {{ loop.index }}. {{ track["name"] }}
                 </div>
             {% endfor %}
