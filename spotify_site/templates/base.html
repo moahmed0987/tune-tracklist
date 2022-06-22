@@ -3,8 +3,9 @@
     
 <head>
     <meta charset="UTF-8">
-    <title>{{ title }}</title>
+    <title>{{ title }}</title> <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
 </head>
 
 <body>
@@ -21,6 +22,11 @@
                 <a href="{{ url_for('top_tracks_default') }}" class="btn nav-item-link">Top Tracks</a>
             </li>
         </ul>
+        <li class="hamburger-icon">
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+                <i class="fa fa-bars"></i>
+            </a>
+        </li>
     </nav>
 
     <div class="content">

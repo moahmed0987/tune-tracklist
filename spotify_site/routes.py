@@ -1,12 +1,14 @@
+
 import time
 
 import secret_keys
 import spotipy
-from flask import Flask, redirect, render_template, request, session, url_for
+from flask import Flask, redirect, render_template, request, send_file, session, url_for
 from spotipy.oauth2 import SpotifyOAuth
 from time_periods import time_periods
 
 from spotify_site import app
+
 
 @app.route("/")
 @app.route("/home/")
@@ -22,15 +24,24 @@ def login():
 @app.route("/redirect/")
 def handle_redirect():
     oauth = create_oauth()
+    session.clear()
     code = request.args.get("code")
     session["token_data"] = oauth.get_access_token(code)
     return redirect(url_for("home"))
 
 @app.route("/artists/<time_period>/")
 def top_artists(time_period): 
-    if time_period not in time_periods: return "Record not found", 400
+    if time_period not in time_periods: 
+        return "Time period not found", 400
     
-    top_artists = call_api_top_artists(time_period=time_period)
+    token_data = get_token_data()
+    if not token_data:
+        print("User is not logged in")
+        return redirect(url_for("login"))
+    
+    spotify_api_client = spotipy.Spotify(auth=token_data["access_token"])
+    top_artists = spotify_api_client.current_user_top_artists(limit=50, offset=0, time_range=time_period)["items"]
+
     return render_template("top_artists.html", title="Top Artists", top_artists=top_artists) 
 
 @app.route("/artists/")
@@ -39,15 +50,29 @@ def top_artists_default():
 
 @app.route("/tracks/<time_period>/")
 def top_tracks(time_period):
-    if time_period not in time_periods: return "Record not found", 400
+    if time_period not in time_periods: 
+        return "Time period not found", 400
 
-    top_tracks = call_api_top_tracks(time_period=time_period)
+    token_data = get_token_data()
+    if not token_data:
+        print("User is not logged in")
+        return redirect(url_for("login"))
+    
+    spotify_api_client = spotipy.Spotify(auth=token_data["access_token"])
+    top_tracks = spotify_api_client.current_user_top_tracks(limit=50, offset=0, time_range=time_period)["items"]
+
     return render_template("top_tracks.html", title="Top Tracks", top_tracks=top_tracks) 
-
 
 @app.route("/tracks/")
 def top_tracks_default():
     return redirect(url_for("top_tracks", time_period="long_term"))
+
+@app.route("/graphs")
+def graphs():
+    graph_data = [{"title":"Top Artists", "data":[3,3,3,15,15]}, {"title":"Top Tracks", "data":[1,2]}, {"title":"Top Artists", "data":[3,3,3,15,15]}, {"title":"Top Tracks", "data":[1,2]}, {"title":"Top Artists", "data":[3,3,3,15,15]}]
+    # graph_data = [[3,3,3,15,15], [1,2], [1,2,3], [1,2], [1,2,3]]
+    return render_template("graph.html", graph_data=graph_data)
+    
 
 
 def create_oauth():
@@ -58,10 +83,10 @@ def create_oauth():
         scope="user-top-read"
     )
 
-def get_token_data():
-    token_data = session.get("token_data", None)
-    if token_data is None:
-        raise ValueError("Token data is None")
+def get_token_data(): # returns token data if already logged in , otherwise False - should be handled and redirected to url_for("login")
+    token_data = session.get("token_data", False)
+    if not token_data:
+        return False
     now = time.time()
     is_expired = token_data["expires_at"] - now < 60
     if is_expired:
@@ -69,24 +94,8 @@ def get_token_data():
         token_data = oauth.refresh_access_token(token_data["refresh_token"])
     return token_data
 
-def call_api_top_artists(time_period):
-    try:
-        token_data = get_token_data()
-    except ValueError:
-        print("User is not logged in")
-        return redirect(url_for("login"))
-    spotify_api_client = spotipy.Spotify(auth=token_data["access_token"])
-    top_artists = spotify_api_client.current_user_top_artists(limit=50, offset=0, time_range=time_period)["items"]
-
-    return top_artists
-    
-def call_api_top_tracks(time_period):
-    try:
-        token_data = get_token_data()
-    except ValueError:
-        print("User is not logged in")
-        return redirect(url_for("login"))
-    spotify_api_client = spotipy.Spotify(auth=token_data["access_token"])
-    top_tracks = spotify_api_client.current_user_top_tracks(limit=50, offset=0, time_range=time_period)["items"]
-
-    return top_tracks
+@app.route("/clearsession")
+def clearsession():
+    session.clear()
+    session['token_data'] = None
+    return redirect("/home")

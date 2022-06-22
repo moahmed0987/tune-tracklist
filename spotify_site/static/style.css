@@ -1,10 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 body {
     font-family: 'Open Sans', sans-serif;
     text-align: center;
 }
+.base-nav{
+    display: flex;
+    justify-content: space-between;
+}
 
 .nav-bar {
+    display: flex;
+    flex-direction: row;
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -17,10 +24,26 @@ body {
 
 .nav-item-link {
     display: block;
-    text-align: center;
-    padding: 14px 16px;
     text-decoration: none;
-    border-radius: 15px;
+}
+
+.hamburger-icon {
+    display: none;
+
+}
+
+.btn {
+    padding: 14px 16px;
+}
+
+.btn:hover {
+    background-color: #aaa;
+    transition: background-color 250ms linear;
+}
+
+.time-period-selector {
+    display: flex;
+    justify-content: center;
 }
 
 .home-button-container {
@@ -28,9 +51,10 @@ body {
     flex-direction: column;
 }
 
-.top-data-img{
+.top-data-img {
     max-width: 100%;
 }
+
 .top-data-list {
     display: grid;
     max-width: 1000px;
@@ -51,4 +75,23 @@ body {
 .data-container {
     display: flex;
     justify-content: center;
+    margin: 1em;
+}
+
+@media screen and (max-width: 600px) {
+    .nav-bar .base-nav-item:not(:first-child) {
+        display: none;
+    }
+    .hamburger-icon {
+        float: right;
+        display: block;
+    }
+    .nav-bar.responsive {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .nav-bar.responsive .base-nav-item {
+        display: list-item;
+    }
 }
