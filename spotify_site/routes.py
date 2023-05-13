@@ -14,7 +14,6 @@ from spotify_site import app
 
 
 @app.route("/")
-@app.route("/home/")
 def home():
     return render_template("home.html", title="Spotify Top Artists and Tracks")
 
@@ -123,4 +122,4 @@ def get_token_data(): # returns token data if already logged in, otherwise False
 def clearsession():
     session.clear()
     session['token_data'] = None
-    return redirect("/home")
+    return redirect(url_for("home"))
