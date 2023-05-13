@@ -25,10 +25,18 @@ def login():
 
 @app.route("/redirect/")
 def handle_redirect():
+    if session.get("next", False):
+        next_url = session["next"]
+        session.pop("next")
+
     oauth = create_oauth()
     session.clear()
     code = request.args.get("code")
     session["token_data"] = oauth.get_access_token(code)
+
+    if next_url:
+        return redirect(next_url)
+    
     return redirect(url_for("home"))
 
 @app.route("/artists/<time_period>/")
@@ -39,6 +47,7 @@ def top_artists(time_period):
     token_data = get_token_data()
     if not token_data:
         print("User is not logged in")
+        session["next"] = url_for("top_artists", time_period=time_period)
         return redirect(url_for("login"))
     
     spotify_api_client = spotipy.Spotify(auth=token_data["access_token"])
@@ -58,6 +67,7 @@ def top_tracks(time_period):
     token_data = get_token_data()
     if not token_data:
         print("User is not logged in")
+        session["next"] = url_for("top_tracks", time_period=time_period)
         return redirect(url_for("login"))
     
     spotify_api_client = spotipy.Spotify(auth=token_data["access_token"])
