@@ -4,7 +4,8 @@
     <h3>The graphs below will give you an insight into your listening experience!</h3>
     <div class="data-container">
         <div class="top-data-list graph-data-list">
-                <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+            {% for graph in graph_data %}
+                <script src="https://cdn.plot.ly/plotly-latest.min.js"></script> 
                 {{ graph|safe }}
             {% endfor %}
         </div>
