@@ -6,6 +6,9 @@ import spotipy
 from flask import Flask, redirect, render_template, request, send_file, session, url_for
 from spotipy.oauth2 import SpotifyOAuth
 from time_periods import time_periods
+import pandas as pd
+import plotly.express as px
+import plotly
 
 from spotify_site import app
 
@@ -69,8 +72,30 @@ def top_tracks_default():
 
 @app.route("/graphs")
 def graphs():
-    graph_data = [{"title":"Top Artists", "data":[3,3,3,15,15]}, {"title":"Top Tracks", "data":[1,2]}, {"title":"Top Artists", "data":[3,3,3,15,15]}, {"title":"Top Tracks", "data":[1,2]}, {"title":"Top Artists", "data":[3,3,3,15,15]}]
-    # graph_data = [[3,3,3,15,15], [1,2], [1,2,3], [1,2], [1,2,3]]
+    token_data = get_token_data()
+    if not token_data:
+        print("User is not logged in")
+        return redirect(url_for("login"))
+    spotify_api_client = spotipy.Spotify(auth=token_data["access_token"])
+
+    top_artists = spotify_api_client.current_user_top_artists(limit=50, offset=0, time_range="long_term")["items"]
+    genres = {}
+    for track in top_artists:
+        for genre in track['genres']:
+            if genre in genres:
+                genres[genre] += 1
+            else:
+                genres[genre] = 1
+    data = [genres, {"label1":1, "label2":2, "label3":3}]
+    
+    df = pd.DataFrame({
+        'genre': [_ for _ in data[0]],
+        'value': [data[0][genre] for genre in data[0]]
+    })
+    fig = px.pie(df, values="value", names="genre")
+    fig.update_traces(hoverinfo='label+percent', textposition='inside', textinfo='percent+label')
+    fig.update_layout(title_text="Top Genres")
+    graph_data = [plotly.io.to_html(fig=fig)]
     return render_template("graph.html", graph_data=graph_data)
     
 
@@ -83,7 +108,7 @@ def create_oauth():
         scope="user-top-read"
     )
 
-def get_token_data(): # returns token data if already logged in , otherwise False - should be handled and redirected to url_for("login")
+def get_token_data(): # returns token data if already logged in, otherwise False - should be handled and redirected to url_for("login")
     token_data = session.get("token_data", False)
     if not token_data:
         return False

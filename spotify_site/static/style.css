@@ -78,6 +78,16 @@ body {
     margin: 1em;
 }
 
+.graph-data-list {
+    grid-template-columns: none;
+    width: 100%;
+}
+
+.graph-data-img {
+    width: 100%;
+}
+
+
 @media screen and (max-width: 600px) {
     .nav-bar .base-nav-item:not(:first-child) {
         display: none;
