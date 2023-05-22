@@ -33,6 +33,11 @@ h1 {
     float: left;
 }
 
+.nav-home {
+    font-weight: 600;
+    font-style: italic;
+}
+
 .link {
     display: block;
     text-decoration: none;
