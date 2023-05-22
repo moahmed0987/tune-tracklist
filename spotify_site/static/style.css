@@ -4,6 +4,8 @@ body {
     font-family: 'Maven Pro', sans-serif;
     text-align: center;
     font-size: 20px;
+    background-color: #0f0f0f;
+    color: white;
 }
 
 h1 {
@@ -34,7 +36,7 @@ h1 {
 .link {
     display: block;
     text-decoration: none;
-    color: black;
+    color: inherit;
     font-size: 1.4rem;
     position: relative;
     padding: 10px;
@@ -49,7 +51,7 @@ h1 {
     width: 0%;
     content: '.';
     color: transparent;
-    background: black;
+    background: white;
     height: 1px;
     transition: all .5s;
 }
