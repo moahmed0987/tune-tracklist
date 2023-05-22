@@ -1,54 +1,82 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Maven+Pro:wght@400;500;600;700&display=swap');
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css');
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Maven Pro', sans-serif;
     text-align: center;
-}
-.base-nav{
-    display: flex;
-    justify-content: space-between;
+    font-size: 20px;
 }
 
+h1 {
+    font-weight: 500;
+}
 .nav-bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 10px;
+}
+
+.nav-list {
     display: flex;
     flex-direction: row;
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding: 10px 0px;
+    width: 100%;
     overflow: hidden;
+    /* justify-content: center; */
+    transition: transform 1s ease-out;
 }
 
-.base-nav-item {
+.nav-item {
     float: left;
 }
 
-.nav-item-link {
+.link {
     display: block;
     text-decoration: none;
+    color: black;
+    font-size: 1.4rem;
+    position: relative;
+    padding: 10px;
+}
+
+.link:after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 0%;
+    content: '.';
+    color: transparent;
+    background: black;
+    height: 1px;
+    transition: all .5s;
+}
+
+.link:hover:after {
+    width: 100%;
 }
 
 .hamburger-icon {
     display: none;
 
 }
-
-.btn {
-    padding: 14px 16px;
-}
-
-.btn:hover {
-    background-color: #aaa;
-    transition: background-color 250ms linear;
-}
-
 .time-period-selector {
     display: flex;
     justify-content: center;
 }
 
-.home-button-container {
+.home-container {
+    display: flex;
+    justify-content: center;
+}
+
+.home-list {
     display: flex;
     flex-direction: column;
+    width: fit-content;
+    list-style-type: none;
 }
 
 .top-data-img {
@@ -89,19 +117,19 @@ body {
 
 
 @media screen and (max-width: 600px) {
-    .nav-bar .base-nav-item:not(:first-child) {
+    .nav-list .nav-item:not(:first-child) {
         display: none;
     }
     .hamburger-icon {
         float: right;
         display: block;
     }
-    .nav-bar.responsive {
+    .nav-list.responsive {
         display: flex;
         flex-direction: column;
         width: 100%;
     }
-    .nav-bar.responsive .base-nav-item {
+    .nav-list.responsive .nav-item {
         display: list-item;
     }
 }

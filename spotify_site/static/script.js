@@ -1,8 +1,8 @@
 function nav_bar_responsive() {
-    var x = document.querySelector(".nav-bar")
-    if (x.className === "nav-bar") {
+    var x = document.querySelector(".nav-list")
+    if (x.className === "nav-list") {
         x.className += " responsive";
     } else {
-        x.className = "nav-bar";
+        x.className = "nav-list";
     }
 }
