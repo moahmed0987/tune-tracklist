@@ -90,34 +90,23 @@ h1 {
     width: 50%;
 }
 
-.explain-chart{
+.table-container {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    margin: 1em;
-    width: 70%;
-    align-self: center;
 }
 
-.explain-row {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    margin: 1em;
+.explain-table{
+    width:70%;
+    border-collapse: separate;
+    border-spacing: 9rem 3rem;
 
 }
 
-.explain-heading {
+.explain-title {
     font-weight: 600;
     font-style: italic;
     font-size: 1.4rem;
     margin: 1em;
-    width: 20%;
-    
-}
-
-.explain-text{
-    width: 80%;
 }
 
 @media all and (max-width: 1000px) {
@@ -129,7 +118,7 @@ h1 {
         flex-direction: column;
     }
 
-    .explain-heading {
+    .explain-title {
         width: 100%;
     }
 
