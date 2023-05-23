@@ -15,7 +15,7 @@ from spotify_site import app
 
 @app.route("/")
 def home():
-    return render_template("home.html", title="Spotify Top Artists and Tracks")
+    return render_template("home.html", title="Home")
 
 @app.route("/login/")
 def login():
@@ -105,7 +105,7 @@ def graphs():
     fig.update_traces(hoverinfo='label+percent', textposition='inside', textinfo='percent+label')
     fig.update_layout(title_text="Top Genres")
     graph_data = [plotly.io.to_html(fig=fig)]
-    return render_template("graph.html", graph_data=graph_data)
+    return render_template("graph.html", title="Graphs", graph_data=graph_data)
     
 
 
