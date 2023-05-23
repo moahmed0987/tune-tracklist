@@ -94,6 +94,8 @@ h1 {
     flex-direction: column;
     justify-content: center;
     margin: 1em;
+    width: 70%;
+    align-self: center;
 }
 
 .explain-row {
@@ -101,6 +103,19 @@ h1 {
     flex-direction: row;
     justify-content: center;
     margin: 1em;
+
+}
+
+.explain-heading {
+    font-weight: 600;
+    font-style: italic;
+    font-size: 1.4rem;
+    margin: 1em;
+    width: 30%;
+    
+}
+
+.explain-text{
 
 }
 
