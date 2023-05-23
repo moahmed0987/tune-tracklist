@@ -140,3 +140,8 @@ h1 {
         display: list-item;
     }
 }
+
+html {
+    visibility: visible;
+    opacity: 1;
+}
