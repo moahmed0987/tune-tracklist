@@ -1,18 +1,22 @@
 {% extends "base.html" %}
 {% block content %}
     <h1>Top Artists</h1>
-
     <div class="time-period-selector">
         <a class="link" href="{{ url_for('top_artists', time_period='short_term') }}">Short Term</a>
         <a class="link" href="{{ url_for('top_artists', time_period='medium_term') }}">Medium Term</a>
         <a class="link" href="{{ url_for('top_artists', time_period='long_term') }}">Long Term</a>
     </div>
-
+    
     <div class="data-container">
         <div class="top-data-list">
             {% for artist in top_artists %}
-                <div class="top-data-item">
-                    <a href="{{ artist['external_urls']['spotify'] }}"><img class="top-data-img" src="{{ artist['images'][1]['url'] }}" alt="Image of {{ artist['name'] }}"></a>
+            <div class="top-data-item">
+                    {% if artist['images'][1]['url'] %}
+                        <a href="{{ artist['external_urls']['spotify'] }}"><img class="top-data-img" src="{{ artist['images'][1]['url'] }}" alt="Image of {{ artist['name'] }}"></a>
+                    {% else %}
+                        <a href="{{ artist['external_urls']['spotify'] }}"><object class="top-data-img" type="image/svg+xml" data="{{ url_for('static', filename='img/no_image.svg') }}">
+                      </object></a>
+                    {% endif %}
                     {{ loop.index }}. {{ artist["name"] }}
                 </div>
             {% endfor %}
