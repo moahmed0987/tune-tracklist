@@ -34,6 +34,10 @@ h1 {
     float: left;
 }
 
+.nav-item a {
+    display: block;
+}
+
 .nav-home {
     font-weight: 600;
     font-style: italic;
@@ -98,10 +102,14 @@ h1 {
 }
 
 .explain-table {
+    display: flex;
+    flex-direction: column;
     width: 70%;
-    border-collapse: separate;
-    border-spacing: 9rem 3rem;
+}
 
+.explain-row {
+    display: flex;
+    gap: 2rem;
 }
 
 .explain-title {
@@ -117,20 +125,22 @@ h1 {
 }
 
 @media all and (max-width: 1000px) {
-    .explain-chart {
-        width: 100%;
+    .explain-table {
+        width: 90%;
     }
 
     .explain-row {
         flex-direction: column;
+        align-items: center;
+        gap: 0rem;
     }
 
     .explain-title {
-        width: 100%;
+        margin: 0;
     }
 
-    .explain-text {
-        width: 100%;
+    .explain-img {
+        width: 8rem;
     }
 }
 
@@ -190,8 +200,8 @@ h1 {
     .nav-list.responsive .nav-item {
         display: list-item;
     }
-    
-    .top-data-list{
+
+    .top-data-list {
         row-gap: 1rem;
         column-gap: 1rem;
     }
