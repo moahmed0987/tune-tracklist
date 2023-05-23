@@ -109,6 +109,11 @@ h1 {
     margin: 1em;
 }
 
+.explain-img {
+    filter: invert(1);
+    width: 12rem;
+}
+
 @media all and (max-width: 1000px) {
     .explain-chart {
         width: 100%;
