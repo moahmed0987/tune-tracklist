@@ -120,6 +120,24 @@ h1 {
     width: 80%;
 }
 
+@media all and (max-width: 1000px) {
+    .explain-chart {
+        width: 100%;
+    }
+    
+    .explain-row {
+        flex-direction: column;
+    }
+
+    .explain-heading {
+        width: 100%;
+    }
+
+    .explain-text {
+        width: 100%;
+    }
+}
+
 .top-data-img {
     max-width: 100%;
 }
