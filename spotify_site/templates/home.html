@@ -1,13 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
     <div class="home-container">
-        <div class="home-list">
-            <li class="home-item">
-                <a class="link" href="{{ url_for('top_artists_default') }}">Top Artists</a>
-            </li>
-            <li class="home-item">
-                <a class="link" href="{{ url_for('top_tracks_default') }}">Top Tracks</a>
-            </li>
+        <div class="home-links-container">
+            <div class="home-links">
+                <p>> <a class="link" href="{{ url_for('top_artists_default') }}">Top Artists</a></p>
+                <p>> <a class="link" href="{{ url_for('top_tracks_default') }}">Top Tracks</a></p>
+            </div>
         </div>
         <div class="explain-chart">
             <div class="explain-row">
