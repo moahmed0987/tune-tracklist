@@ -76,14 +76,32 @@ h1 {
 
 .home-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
 .home-list {
     display: flex;
     flex-direction: column;
-    width: fit-content;
+    width: 70%;
+    align-self: center;
+    align-items: center;
     list-style-type: none;
+}
+
+.explain-chart{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 1em;
+}
+
+.explain-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 1em;
+
 }
 
 .top-data-img {
