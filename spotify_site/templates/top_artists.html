@@ -11,7 +11,7 @@
         <div class="top-data-list">
             {% for artist in top_artists %}
             <div class="top-data-item">
-                    {% if artist['images'][1]['url'] %}
+                    {% if artist['images'] %}
                         <a href="{{ artist['external_urls']['spotify'] }}"><img class="top-data-img" src="{{ artist['images'][1]['url'] }}" alt="Image of {{ artist['name'] }}"></a>
                     {% else %}
                         <a href="{{ artist['external_urls']['spotify'] }}"><object class="top-data-img" type="image/svg+xml" data="{{ url_for('static', filename='img/no_image.svg') }}">
