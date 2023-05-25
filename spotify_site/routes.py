@@ -144,3 +144,9 @@ def clearsession():
     session.clear()
     session['token_data'] = None
     return redirect(url_for("home"))
+
+@app.template_filter('datetimeformat')
+def datetimeformat(value, format='%Y-%m-%d %H:%M:%S'):
+    from datetime import datetime
+    value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%fZ')
+    return value.strftime(format)
