@@ -71,7 +71,11 @@ h1 {
 
 .hamburger-icon {
     display: none;
+    width: min-content;
+}
 
+.icon {
+    display: block;
 }
 
 .time-period-selector {
@@ -182,19 +186,25 @@ h1 {
 
 
 @media screen and (max-width: 600px) {
+    .nav-list {
+        justify-content: space-between;
+    }
     .nav-list .nav-item:not(:first-child) {
         display: none;
     }
 
     .hamburger-icon {
         float: right;
-        display: block;
+        display: block;  
+        position: absolute;
+        right: 10px;
     }
 
     .nav-list.responsive {
         display: flex;
         flex-direction: column;
         width: 100%;
+        align-items: center;
     }
 
     .nav-list.responsive .nav-item {
