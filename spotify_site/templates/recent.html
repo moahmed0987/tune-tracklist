@@ -12,14 +12,21 @@
             {% for song in recent_tracks %}
                 <div class="song-container">
                 <div class="song">
-                    <a href="{{ song['track']['external_urls']['spotify'] }}"><img class="song-img" src="{{ song['track']['album']['images'][1]['url'] }}" alt="Image of {{ song['track']['name'] }}"></a>
+                    <div class="song-img-container">
+                        <a class="song-link" href="{{ song['track']['external_urls']['spotify'] }}"><img class="song-img" src="{{ song['track']['album']['images'][1]['url'] }}" alt="Image of {{ song['track']['name'] }}"></a>
+                    </div>
                     <div class="song-info">
                         <p class="song-name">{{ song['track']['name'] }}</p>
-                        <div class="song-artists">
+                        <!-- <div class="song-artists">
                             {% for artist in song.track.artists %}
                                 <p class="song-artist">{{ artist.name }}</p>
                             {% endfor %}
-                        </div>
+                        </div> -->
+                        <p class="song-artists">
+                            {% for artist in song.track.artists %}
+                            <span class="song-artist">{{ artist.name }}</span>
+                            {% endfor %}
+                        </p>
                         <p class="song-album">{{ song['track']['album']['name'] }}</p>
                         <p class="song-time">{{ song['played_at'] | datetimeformat }}</p>                        
                     </div>
