@@ -7,6 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    {% block head %}
+
+    {% endblock head %}
 </head>
 
 <body>
@@ -22,6 +25,8 @@
             <li class="nav-item">
                 <a href="{{ url_for('top_tracks_default') }}" class="link">Top Tracks</a>
             </li>
+            <li class="nav-item">
+                <a href="{{ url_for('recent') }}" class="link">Recently Played</a>
             <li class="nav-item">
                 <a href="{{ url_for('graphs') }}" class="link">Graphs</a>
             </li>

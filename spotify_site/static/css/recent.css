@@ -1,0 +1,39 @@
+.recent-container {
+    display: flex;
+    justify-content: center;
+}
+
+.recent-tracks {
+    width: 70%;
+}   
+
+.song {
+    display: flex;
+    flex-direction: row;
+}
+
+.song-img { 
+    width: 100%;
+}
+
+.song-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 90%;
+    gap: 5px;
+}
+
+.song-info > p {
+    margin: 0;
+}
+
+.song-artists > span:not(:last-child)::after {
+    content: ",";
+}
+
+@media all and (max-width: 1000px) {
+    .recent-tracks {
+        width: 90%;
+    }
+}

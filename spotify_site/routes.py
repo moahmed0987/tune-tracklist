@@ -107,14 +107,25 @@ def graphs():
     graph_data = [plotly.io.to_html(fig=fig)]
     return render_template("graph.html", title="Graphs", graph_data=graph_data)
     
+@app.route("/recent")
+def recent():
+    token_data = get_token_data()
+    if not token_data:
+        print("User is not logged in")
+        session["next"] = url_for("recent")
+        return redirect(url_for("login"))
+    spotify_api_client = spotipy.Spotify(auth=token_data["access_token"])
 
+    recent_tracks = spotify_api_client.current_user_recently_played(limit=50, after=None, before=None)["items"]
+
+    return render_template("recent.html", title="Recent Tracks", recent_tracks=recent_tracks)
 
 def create_oauth():
     return SpotifyOAuth(
         client_id=secret_keys.client_id,
         client_secret=secret_keys.client_secret,
         redirect_uri=url_for("handle_redirect", _external=True),
-        scope="user-top-read"
+        scope="user-top-read user-read-recently-played"
     )
 
 def get_token_data(): # returns token data if already logged in, otherwise False - should be handled and redirected to url_for("login")
@@ -133,3 +144,9 @@ def clearsession():
     session.clear()
     session['token_data'] = None
     return redirect(url_for("home"))
+
+@app.template_filter('datetimeformat')
+def datetimeformat(value, format='%Y-%m-%d %H:%M'):
+    from datetime import datetime
+    value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%fZ')
+    return value.strftime(format)
