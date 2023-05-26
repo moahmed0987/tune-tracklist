@@ -1,0 +1,34 @@
+.recent-container {
+    display: flex;
+    justify-content: center;
+}
+
+.recent-tracks {
+    width: 70%;
+}   
+
+.song {
+    display: flex;
+    flex-direction: row;
+}
+
+.song-img {
+    width: 30%;
+}
+.song-artists {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.song-info {
+    width: 70%;
+}
+
+.song-info > p {
+    margin: 0;
+}
+
+.song-artists > p {
+    margin: 0;
+}
