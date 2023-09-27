@@ -9,6 +9,7 @@ from time_periods import time_periods
 import pandas as pd
 import plotly.express as px
 import plotly
+import dateutil.parser
 
 from spotify_site import app
 
@@ -147,6 +148,5 @@ def clearsession():
 
 @app.template_filter('datetimeformat')
 def datetimeformat(value, format='%Y-%m-%d %H:%M'):
-    from datetime import datetime
-    value = datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%fZ')
-    return value.strftime(format)
+    date = dateutil.parser.parse(value)
+    return date.strftime(format)
