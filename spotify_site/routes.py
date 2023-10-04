@@ -108,7 +108,7 @@ def graphs():
     fig.update_layout(paper_bgcolor='rgba(0,0,0,0)', plot_bgcolor='rgba(0,0,0,0)')
     fig.update_layout(font_color="white", modebar=dict(bgcolor='rgba(0, 0, 0, 0)', color='white'))
     
-    graph_data = [plotly.io.to_html(fig=fig, config={"displayModeBar": False})]
+    graph_data = [plotly.io.to_html(fig=fig, config={"displayModeBar": False}, full_html=False)]
     return render_template("graph.html", title="Graphs", graph_data=graph_data)
     
 @app.route("/recent")
