@@ -17,7 +17,8 @@
                         <a href="{{ artist['external_urls']['spotify'] }}"><object class="top-data-img" type="image/svg+xml" data="{{ url_for('static', filename='img/no_image.svg') }}">
                       </object></a>
                     {% endif %}
-                    {{ loop.index }}. {{ artist["name"] }}
+                    {{ loop.index }}. {{ artist["name"] }} 
+                    <a href="{{ artist['external_urls']['spotify'] }}"><img src="{{ url_for('static', filename='img/Spotify_Icon_RGB_White.png') }}" alt="" class="spotify_icon"></a>
                 </div>
             {% endfor %}
         </div>

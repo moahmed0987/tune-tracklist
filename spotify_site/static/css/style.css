@@ -184,6 +184,10 @@ h1 {
     width: 100%;
 }
 
+.spotify_icon {
+    height: 30px;
+}
+
 
 @media screen and (max-width: 600px) {
     .nav-list {
