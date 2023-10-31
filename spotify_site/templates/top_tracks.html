@@ -14,6 +14,7 @@
                 <div class="top-data-item">
                     <a href="{{ track['external_urls']['spotify'] }}"><img class="top-data-img" src="{{ track['album']['images'][1]['url'] }}" alt="Cover art for {{ track['name'] }}"></a>
                     {{ loop.index }}. {{ track["name"] }}
+                    <a href="{{ track['external_urls']['spotify'] }}"><img src="{{ url_for('static', filename='img/Spotify_Icon_RGB_White.png') }}" alt="" class="spotify_icon"></a>
                 </div>
             {% endfor %}
         </div>
