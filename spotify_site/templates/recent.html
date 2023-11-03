@@ -9,6 +9,26 @@
     
     <div class="recent-container">
         <div class="recent-tracks">
+            {% if currently_playing %}
+            <div class="song-container">
+                <div class="song">
+                    <div class="song-img-container">
+                        <a class="song-link" href="{{ currently_playing['item']['external_urls']['spotify'] }}"><img class="song-img" src="{{ currently_playing['item']['album']['images'][1]['url'] }}" alt="Image of {{ currently_playing['item']['name'] }}"></a>
+                    </div>
+                    <div class="song-info">
+                        <p class="song-name">{{ currently_playing['item']['name'] }}</p>
+                    <p class="song-artists">
+                        {% for artist in currently_playing.item.artists %}
+                        <span class="song-artist">{{ artist.name }}</span>
+                        {% endfor %}
+                    </p>
+                    <p class="song-album">{{ currently_playing['item']['album']['name'] }}</p>
+                    <p class="song-time">Currently Playing</p>      
+                    </div>
+                </div>
+                <hr>
+            </div>
+            {% endif %}
             {% for song in recent_tracks %}
                 <div class="song-container">
                 <div class="song">
