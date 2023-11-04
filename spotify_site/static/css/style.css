@@ -190,16 +190,21 @@ h1 {
 
 
 @media screen and (max-width: 600px) {
+    body {
+        font-size: 1rem;
+    }
+
     .nav-list {
         justify-content: space-between;
     }
+
     .nav-list .nav-item:not(:first-child) {
         display: none;
     }
 
     .hamburger-icon {
         float: right;
-        display: block;  
+        display: block;
         position: absolute;
         right: 10px;
     }
