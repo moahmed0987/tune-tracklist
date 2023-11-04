@@ -132,7 +132,7 @@ def create_oauth():
         client_id=secret_keys.client_id,
         client_secret=secret_keys.client_secret,
         redirect_uri=url_for("handle_redirect", _external=True),
-        scope="user-top-read user-read-recently-played user-read-currently-playing user-read-playback-state"
+        scope="user-top-read user-read-recently-played user-read-currently-playing"
     )
 
 def get_token_data(): # returns token data if already logged in, otherwise False - should be handled and redirected to url_for("login")
