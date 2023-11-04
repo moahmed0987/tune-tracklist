@@ -33,6 +33,12 @@
     content: ",";
 }
 
+.currently-playing {
+    font-size: 1.1em;
+    font-style: italic;
+    font-weight: bold;
+}
+
 .currently-playing-song {
     --borderWidth: 5px;
     background: #1D1F20;
