@@ -26,6 +26,7 @@ def login():
 
 @app.route("/redirect/")
 def handle_redirect():
+    next_url = ""
     if session.get("next", False):
         next_url = session["next"]
         session.pop("next")
