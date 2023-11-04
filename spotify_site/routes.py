@@ -123,7 +123,6 @@ def recent():
     recent_tracks = spotify_api_client.current_user_recently_played(limit=50, after=None, before=None)["items"]
 
     currently_playing = spotify_api_client.current_user_playing_track()
-    print(currently_playing)
 
     return render_template("recent.html", title="Recent Tracks", recent_tracks=recent_tracks, currently_playing=currently_playing)
 
