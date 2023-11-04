@@ -33,6 +33,42 @@
     content: ",";
 }
 
+.currently-playing-song {
+    --borderWidth: 95px;
+    background: #1D1F20;
+    position: relative;
+    border-radius: var(--borderWidth);
+}
+
+.currently-playing-song:after {
+    content: '';
+    position: absolute;
+    top: calc(-1 * var(--borderWidth));
+    left: calc(-1 * var(--borderWidth));
+    height: calc(100% + var(--borderWidth) * 2);
+    width: calc(100% + var(--borderWidth) * 2);
+    background: linear-gradient(125deg, #0f0f0f, #0f0f0f, green, #0f0f0f, #0f0f0f);
+    border-radius: calc(2 * var(--borderWidth));
+    z-index: -1;
+    animation: animatedgradient 3s ease infinite;
+    background-size: 300% 300%;
+}
+
+
+@keyframes animatedgradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
 @media all and (max-width: 1000px) {
     .recent-tracks {
         width: 90%;

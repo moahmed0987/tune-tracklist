@@ -11,7 +11,7 @@
         <div class="recent-tracks">
             {% if currently_playing %}
             <div class="song-container">
-                <div class="song">
+                <div class="song currently-playing-song">
                     <div class="song-img-container">
                         <a class="song-link" href="{{ currently_playing['item']['external_urls']['spotify'] }}"><img class="song-img" src="{{ currently_playing['item']['album']['images'][1]['url'] }}" alt="Image of {{ currently_playing['item']['name'] }}"></a>
                     </div>
