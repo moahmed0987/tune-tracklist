@@ -10,6 +10,7 @@ import pandas as pd
 import plotly.express as px
 import plotly
 import dateutil.parser
+from datetime import datetime
 
 from spotify_site import app
 
@@ -156,3 +157,7 @@ def clearsession():
 def datetimeformat(value, format='%Y-%m-%d %H:%M'):
     date = dateutil.parser.parse(value)
     return date.strftime(format)
+
+@app.context_processor
+def inject_now():
+    return {'now': datetime.utcnow()}
